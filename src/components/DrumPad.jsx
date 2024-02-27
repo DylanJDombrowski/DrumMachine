@@ -1,49 +1,20 @@
-import React, { useRef } from "react";
-import PropTypes from "prop-types";
+function DrumPad() {
+  function playSound() {
+    // Log to the console
+    console.log("Clap.mp3 played");
 
-function DrumPad({ clipId, clipSrc, keyTrigger, onTrigger }) {
-  const audioRef = useRef(null);
+    // Create a new audio object and set the source to the Clap.mp3 file in your assets folder
+    const audio = new Audio("../assets/Clap.mp3");
 
-  const playSound = () => {
-    audioRef.current.currentTime = 0; // Rewind to the start
-    audioRef.current.play();
-    onTrigger(clipId); // Notify the parent component
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key.toUpperCase() === keyTrigger) {
-      playSound();
-    }
-  };
-
-  // Attach the event listener for key presses
-  React.useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-
-    // Cleanup the event listener
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  });
+    // Play the sound
+    audio.play();
+  }
 
   return (
-    <div className="drum-pad" id={clipId} onClick={playSound}>
-      {keyTrigger}
-      <audio
-        ref={audioRef}
-        id={keyTrigger}
-        className="clip"
-        src={clipSrc}
-      ></audio>
+    <div className="DrumPad" onClick={playSound}>
+      <button>Click</button>
     </div>
   );
 }
-
-DrumPad.propTypes = {
-  clipId: PropTypes.string.isRequired,
-  clipSrc: PropTypes.string.isRequired,
-  keyTrigger: PropTypes.string.isRequired,
-  onTrigger: PropTypes.func.isRequired,
-};
 
 export default DrumPad;
