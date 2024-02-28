@@ -1,9 +1,18 @@
-import DrumPad from "./components/DrumPad"; // Assuming DrumPad is the component that will handle the key press and sound playback
+import { useState } from "react";
+import DrumPad from "./components/DrumPad";
+import Display from "./components/Display";
 
 function App() {
+  const [lastPlayed, setLastPlayed] = useState("");
+
+  const updateLastPlayed = (soundName) => {
+    setLastPlayed(soundName);
+  };
+
   return (
-    <div className="App">
-      <DrumPad />
+    <div id="drum-machine">
+      <Display text={lastPlayed} />{" "}
+      <DrumPad updateLastPlayed={updateLastPlayed} />{" "}
     </div>
   );
 }

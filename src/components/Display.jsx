@@ -1,9 +1,11 @@
-function Display() {
-  return (
-    <div className="Display">
-      {/* Display content goes here, possibly showing the name of the last played sound */}
-    </div>
-  );
+import PropTypes from "prop-types";
+
+function Display({ text }) {
+  return <div id="display">{text}</div>;
 }
+
+Display.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default Display;
