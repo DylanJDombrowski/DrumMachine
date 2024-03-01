@@ -1,31 +1,86 @@
 :root {
+  --custom-grey: white;
+  --body-grey: white;
+  --select-grey: #ffffff;
+  --hover-grey: #d8dee5;
+  --yellow: #fcff5d;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+html {
+  background: rgb(7, 7, 29);
+  background: radial-gradient(
+    circle,
+    rgba(7, 7, 29, 1) 100%,
+    rgba(131, 58, 180, 1) 100%
+  );
 }
 
 #drum-machine {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
-  gap: 10px; /* Adds some space between the drum pads */
-  max-width: 600px; /* Adjust the width as needed */
-  margin: 0 auto; /* Center the grid */
-}
-.drum-pad {
-  padding: 20px; /* Adjust the padding as needed */
-  background: #ddd; /* Background color for the pads */
-  text-align: center; /* Center the text inside each pad */
-  cursor: pointer; /* Changes the cursor to indicate clickable items */
+  grid-template-columns: repeat(3, 200px);
+  gap: 10px;
+  justify-content: center;
+  padding: 20px;
+  font: 2rem sans-serif;
+  margin: auto; /* Center the grid horizontally */
 }
 
-.drum-pad:active {
-  background-color: #ddd;
+.drum-pad {
+  padding: 20px;
+  background: #ddd;
+  text-align: center;
+  cursor: pointer;
+}
+
+.drum-pad:active,
+.drum-pad.active {
+  background-color: #ddd; /* Change background color when the drum pad is clicked */
 }
 
 #display {
-  margin-bottom: 20px;
-  padding: 10px;
-  min-height: 50px;
-  width: 300px;
+  grid-column: 1 / -1; /* Make the display span all columns */
+  font-size: 50px; /* Font size of the display */
+  justify-self: center; /* Center the display horizontally */
+  margin-bottom: 20px; /* Margin below the display */
+  margin: 2rem 0 1rem 0; /* Margin above and below the display */
+  height: 10rem; /* Minimum height of the display */
+  width: 500px; /* Width of the display */
+  text-align: center; /* Center text inside the display */
+  line-height: 10rem;
+  background-color: #efcb68; /* Background color of the display */
+}
+
+.drum-machine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Make it at least the height of the viewport */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  #drum-machine {
+    grid-template-columns: repeat(3, 100px); /* Smaller drum pads */
+    font: 1rem sans-serif;
+  }
+  .drum-pad {
+    padding: 15px; /* Smaller padding */
+  }
+  #display {
+    width: 80%; /* Make the display width responsive */
+    max-width: 300px; /* Ensure it doesn't grow too large on wider screens */
+  }
+}
+
+#social-links {
+  font-size: medium;
+  color: white;
   text-align: center;
-  background-color: #fafafa;
-  border: 1px solid #ccc;
+  position: fixed;
+  bottom: 30px;
+  font: 2em sans-serif;
+  left: 50%;
+  transform: translateX(-50%);
 }
